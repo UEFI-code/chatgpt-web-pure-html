@@ -2565,37 +2565,21 @@
                     </button>
                 </div>
                 <div id="modelDialog" style="display:none;">
-                    <div class="modelSingle" data-value="gpt-3.5-turbo" data-ver="3.5">
+                    <div class="modelSingle" data-value="azgpt" data-ver="2333">
                         <div class="modelAvatar gptAvatar">
                             <svg width="24" height="24">
                                 <use xlink:href="#aiIcon"></use>
                             </svg>
                         </div>
-                        <div>GPT-3.5</div>
+                        <div>Az ChatGPT</div>
                     </div>
-                    <div class="modelSingle" data-value="gpt-4" data-ver="4">
+                    <div class="modelSingle" data-value="azgpt-4o" data-ver="4o">
                         <div class="modelAvatar gptAvatar">
                             <svg width="24" height="24">
                                 <use xlink:href="#aiIcon"></use>
                             </svg>
                         </div>
-                        <div>GPT-4</div>
-                    </div>
-                    <div class="modelSingle" data-value="gpt-4-turbo" data-ver="4 Turbo">
-                        <div class="modelAvatar gptAvatar">
-                            <svg width="24" height="24">
-                                <use xlink:href="#aiIcon"></use>
-                            </svg>
-                        </div>
-                        <div>GPT-4 Turbo</div>
-                    </div>
-                    <div class="modelSingle" data-value="gpt-4o" data-ver="4o">
-                        <div class="modelAvatar gptAvatar">
-                            <svg width="24" height="24">
-                                <use xlink:href="#aiIcon"></use>
-                            </svg>
-                        </div>
-                        <div>GPT-4o</div>
+                        <div>Az GPT-4o</div>
                     </div>
                     <div class="modelSingle" data-value="gemini-1.0-pro" data-ver="1.0">
                         <div class="modelAvatar">
@@ -3046,7 +3030,7 @@
                             </div>
                         </div>
                         <div class="modelSwitch">
-                            <div data-id="gptOption" class="activeSwitch">ChatGPT</div>
+                            <div data-id="gptOption" class="activeSwitch">Az ChatGPT</div>
                             <div data-id="geminiOption">Gemini</div>
                             <div data-id="claudeOption">Claude</div>
                         </div>
@@ -3071,7 +3055,7 @@
                             <div class="setContent">
                                 <div class="setTitle" data-i18n-key="aiModel"></div>
                                 <div class="setDetail inputDetail">
-                                    <input class="inputTextClass" type="text" placeholder="gpt-x-xxx" id="modelInput"
+                                    <input class="inputTextClass" type="text" placeholder="azgpt-x-xxx" id="modelInput"
                                         autocomplete="off" />
                                 </div>
                             </div>
@@ -6865,16 +6849,16 @@
             const modelsEle = Array.from(modelSetEle.children);
             let localModelName = localStorage.getItem("modelVersion");
             let isVailModel = modelsEle.some(item => item.dataset.value === localModelName)
-            modelVersion = isVailModel ? localModelName : "gpt-3.5-turbo";
+            modelVersion = isVailModel ? localModelName : "azgpt";
             const applyModelVersion = () => {
                 let activedEle = modelSetEle.querySelector(".activeModel");
                 if (activedEle) activedEle.classList.remove("activeModel");
                 activedEle = modelSetEle.querySelector(`[data-value="${modelVersion}"]`);
                 activedEle.classList.add("activeModel");
                 modelVer.textContent = activedEle.dataset.ver;
-                if (modelVersion.startsWith("gpt")) {
+                if (modelVersion.startsWith("azgpt")) {
                     modelType = 1;
-                    modelName.textContent = "ChatGPT";
+                    modelName.textContent = "Azure ChatGPT";
                 } else if (modelVersion.startsWith("gemini")) {
                     modelType = 2;
                     modelName.textContent = "Gemini";
@@ -8193,7 +8177,7 @@
                         headers["api-key"] = customAPIKey;
                     body = JSON.stringify({
                         messages: dataSlice,
-                        model: currentModelName,
+                        //model: currentModelName,
                         stream: true,
                         temperature: roleTemp,
                         top_p: roleNature
