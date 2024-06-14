@@ -3055,16 +3055,16 @@
                         </div>
                         <div id="gptOption">
                             <div class="setContent setNotNormalFlow">
-                                <div class="setTitle"><span>ChatGPT</span><span data-i18n-key="aiEndpoint"></span></div>
+                                <div class="setTitle"><span>Azure ChatGPT</span><span data-i18n-key="aiEndpoint"></span></div>
                                 <div class="setDetail inputDetail" style="position: relative;">
-                                    <input class="inputTextClass" placeholder="https://api.openai.com/"
+                                    <input class="inputTextClass" placeholder="https://xxxx.openai.azure.com/openai/deployments/xxxx/completions?api-version=2022-12-01"
                                         autocomplete="off" id="apiHostInput" />
                                 </div>
                             </div>
                             <div class="setContent">
                                 <div class="setTitle"><span data-i18n-key="aiKey"></span></div>
                                 <div class="setDetail inputDetail">
-                                    <input class="inputTextClass" type="password" placeholder="sk-xxxxxx" id="keyInput"
+                                    <input class="inputTextClass" type="password" placeholder="xxxxxxx" id="keyInput"
                                         autocomplete="off" />
                                 </div>
                             </div>
@@ -3493,7 +3493,7 @@
                 "customDarkTheme": "Custom dark theme",
                 "startDark": "Start",
                 "endDark": "End",
-                "aiEndpoint": " endpoint",
+                "aiEndpoint": " Endpoint",
                 "aiKey": " API key",
                 "aiModel": "Custom model name",
                 "used": "Used ",
@@ -8185,8 +8185,12 @@
                         if (item.role === "assistant") return { role: item.role, content: item.content };
                         else return item;
                     })
-                    url = apiHost + ((apiHost.length && !apiHost.endsWith("/")) ? "/" : "") + API_URL;
-                    if (customAPIKey) headers["Authorization"] = "Bearer " + customAPIKey;
+                    //url = apiHost + ((apiHost.length && !apiHost.endsWith("/")) ? "/" : "") + API_URL;
+                    // Hack to Azure Endpoint
+                    url = apiHost;
+                    if (customAPIKey) 
+                        //headers["Authorization"] = "Bearer " + customAPIKey;
+                        headers["api-key"] = customAPIKey;
                     body = JSON.stringify({
                         messages: dataSlice,
                         model: currentModelName,
