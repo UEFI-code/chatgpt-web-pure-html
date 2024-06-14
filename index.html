@@ -4088,20 +4088,16 @@
             let langs = [['中文'], ['English'], ['日本語']];
             if (azureData) {
                 azureData.forEach(item => {
+                    let lowCase = item.toLowerCase();
+                    let dialectName = azureLangTrans[lowCase] || lowCase; // keep original name if not translated
                     if (item.startsWith("en-")) {
-                        let lowCase = item.toLowerCase();
-                        let dialectName = azureLangTrans[lowCase] || lowCase;
                         if (lowCase == "en-us") langs[1].splice(1, 0, [lowCase, dialectName]);
                         else langs[1].push([lowCase, dialectName]);
                     } else if (item.indexOf("CN") != -1 || item.indexOf("zh") != -1) {
-                        let lowCase = item.toLowerCase();
-                        let dialectName = azureLangTrans[lowCase] || lowCase;
                         if (lowCase == "zh-cn") langs[0].splice(1, 0, [lowCase, dialectName]);
                         else langs[0].push([lowCase, dialectName]);
                     }
                     else if (item.startsWith("ja-")) {
-                        let lowCase = item.toLowerCase();
-                        let dialectName = azureLangTrans[lowCase] || lowCase;
                         langs[2].push([lowCase, dialectName]);
                     }
                 })
