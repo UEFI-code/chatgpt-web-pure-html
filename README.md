@@ -24,7 +24,7 @@ Pure Javascript ChatGPT demo based on Azure OpenAI API
 
 ## Demo
 
-[在线预览](https://xqdoo00o.github.io/chatgpt-web/) （使用需配置OpenAI接口和API密钥）
+[在线预览](https://azchat.girl.city) （使用需配置Azure OpenAI接口和API密钥）
 
 ## 使用方法
 
