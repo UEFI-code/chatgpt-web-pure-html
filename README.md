@@ -37,7 +37,7 @@ ___
 
     - 不可正常访问`api.openai.com`，填写其反代地址（可使用[Cloudflare Worker](https://github.com/xqdoo00o/openai-proxy)等反代），注意：反代接口响应需添加跨域Header `Access-Control-Allow-Origin`
 
-    - OpenAI接口也可以在[环境变量](#环境变量)中单独配置。
+    - OpenAI接口也可以在[环境变量](#环境变量)中单独配置。STUPID Warning!!!
 - **同时部署HTML和OpenAI反代接口**
 
     **注意：服务器需正常访问`api.openai.com`，不用设置OpenAI接口了**
