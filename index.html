@@ -4083,9 +4083,9 @@
             azureRecKeyEle.dispatchEvent(new Event("change"));
             if (azureRecKey) checkAzureFunc();
         }
-        const azureLangTrans = { "en-au": "Australia", "en-ca": "Canada", "en-gb": "United Kingdom", "en-gh": "Ghana", "en-hk": "Hong Kong SAR", "en-ie": "Ireland", "en-in": "India", "en-ke": "Kenya", "en-ng": "Nigeria", "en-nz": "New Zealand", "en-ph": "Philippines", "en-sg": "Singapore", "en-tz": "Tanzania", "en-us": "United States", "en-za": "South Africa", "nan-cn": "闽南语，简体", "wuu-cn": "吴语，简体", "yue-cn": "粤语，简体", "zh-cn": "普通话，简体", "zh-cn-anhui": "安徽江淮普通话，简体", "zh-cn-bilingual": "普通话，英语双语", "zh-cn-gansu": "甘肃兰银普通话，简体", "zh-cn-guangxi": "广西口音普通话，简体", "zh-cn-henan": "中原官话河南，简体", "zh-cn-hunan": "湖南口音普通话，简体", "zh-cn-liaoning": "东北官话，简体", "zh-cn-shaanxi": "中原官话陕西，简体", "zh-cn-shandong": "冀鲁官话，简体", "zh-cn-shanxi": "山西口音普通话，简体", "zh-cn-sichuan": "西南官话，简体", "zh-hk": "粤语，繁体", "zh-sg": "简体，新加坡", "zh-tw": "台湾普通话" };
+        const azureLangTrans = { "en-au": "Australia", "en-ca": "Canada", "en-gb": "United Kingdom", "en-gh": "Ghana", "en-hk": "Hong Kong SAR", "en-ie": "Ireland", "en-in": "India", "en-ke": "Kenya", "en-ng": "Nigeria", "en-nz": "New Zealand", "en-ph": "Philippines", "en-sg": "Singapore", "en-tz": "Tanzania", "en-us": "United States", "en-za": "South Africa", "nan-cn": "闽南语，简体", "wuu-cn": "吴语，简体", "yue-cn": "粤语，简体", "zh-cn": "普通话，简体", "zh-cn-anhui": "安徽江淮普通话，简体", "zh-cn-bilingual": "普通话，英语双语", "zh-cn-gansu": "甘肃兰银普通话，简体", "zh-cn-guangxi": "广西口音普通话，简体", "zh-cn-henan": "中原官话河南，简体", "zh-cn-hunan": "湖南口音普通话，简体", "zh-cn-liaoning": "东北官话，简体", "zh-cn-shaanxi": "中原官话陕西，简体", "zh-cn-shandong": "冀鲁官话，简体", "zh-cn-shanxi": "山西口音普通话，简体", "zh-cn-sichuan": "西南官话，简体", "zh-hk": "粤语，繁体", "zh-sg": "简体，新加坡", "zh-tw": "台湾普通话", "jp-jp": "日本语", "ko-kr": "韩国语" };
         const initRecSetting = (azureData) => {
-            let langs = [['中文'], ['English']];
+            let langs = [['中文'], ['English'], ['日本語']];
             if (azureData) {
                 azureData.forEach(item => {
                     if (item.startsWith("en-")) {
@@ -4099,12 +4099,19 @@
                         if (lowCase == "zh-cn") langs[0].splice(1, 0, [lowCase, dialectName]);
                         else langs[0].push([lowCase, dialectName]);
                     }
+                    else if (item.startsWith("ja-")) {
+                        let lowCase = item.toLowerCase();
+                        let dialectName = azureLangTrans[lowCase] || lowCase;
+                        langs[2].push([lowCase, dialectName]);
+                    }
                 })
             } else if (existRec === 3) {
+                // OpenAI Whisper
                 langs = [
                     ['自动检测', ['', '自动检测']],
                     ['中文', ['zh', '汉语']],
-                    ['English', ['en', 'English']]
+                    ['English', ['en', 'English']],
+                    ['日本語', ['ja', '日本語']]
                 ];
             } else {
                 langs = [ // from https://www.google.com/intl/en/chrome/demos/speech.html
@@ -4123,7 +4130,8 @@
                         ['en-NZ', 'New Zealand'],
                         ['en-NG', 'Nigeria'],
                         ['en-ZA', 'South Africa'],
-                        ['en-PH', 'Philippines']]
+                        ['en-PH', 'Philippines']],
+                    ['日本語', ['ja-JP', '日本語']]
                 ];
             };
             toggleRecCheck(false);
@@ -5157,8 +5165,8 @@
         const initVoiceSetting = (voices) => {
             if (existVoice < 4) {
                 let isOnline = existVoice === 2 || existVoice === 3;
-                // 支持中文和英文
-                voices = isOnline ? voices.filter(item => item.Locale.match(/^(zh-|en-)/)) : voices.filter(item => item.lang.match(/^(zh-|en-)/));
+                // Hack to Support ALL voices
+                //voices = isOnline ? voices.filter(item => item.Locale.match(/^(zh-|en-|ja-)/)) : voices.filter(item => item.lang.match(/^(zh-|en-|ja-)/));
                 if (isOnline) {
                     voices.map(item => {
                         item.name = item.FriendlyName || (`${item.DisplayName} Online (${item.VoiceType}) - ${item.LocaleName}`);
