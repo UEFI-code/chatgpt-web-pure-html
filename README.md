@@ -28,7 +28,7 @@ Pure Javascript ChatGPT demo based on Azure OpenAI API
 
 ## 使用方法
 
-直接把index.html丢进web服务器里。
+直接把项目丢进web服务器里，访问index.html。
 
 ## PWA应用
 部署文件[icon.png](https://raw.githubusercontent.com/xqdoo00o/chatgpt-web/main/icon.png)，[manifest.json](https://raw.githubusercontent.com/xqdoo00o/chatgpt-web/main/manifest.json)，[sw.js](https://raw.githubusercontent.com/xqdoo00o/chatgpt-web/main/sw.js)到index.html同目录下，即可支持PWA应用。
