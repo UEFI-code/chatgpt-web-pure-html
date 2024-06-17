@@ -8135,7 +8135,7 @@
             controllerId = setTimeout(() => {
                 notyf.error(translations[locale]["timeoutTip"]);
                 stopLoading();
-            }, 200000);
+            }, 600000);
             let isRefresh = refreshIdx !== void 0;
             if (isRefresh) {
                 currentResEle = chatlog.children[systemRole ? refreshIdx - 1 : refreshIdx];
