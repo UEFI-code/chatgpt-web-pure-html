@@ -8266,8 +8266,19 @@
                                         try {
                                             payload = JSON.parse(chunk.slice(5));
                                         } catch (e) {
+                                            // half json?
                                             console.log(e);
-                                            break;
+                                            let index = chunk.indexOf('content":"');
+                                            if (index != -1)
+                                            {
+                                                console.log("Intersting! Half json");
+                                                let endIndex = chunk.indexOf('"', index + 10);
+                                                let theString = chunk.slice(index + 10, endIndex);
+                                                console.log('Found content: ' + theString);
+                                                progressData += theString;
+                                                container.innerHTML = md.render(progressData);
+                                            }
+                                            continue;
                                         }
                                         if (!payload.choices.length) continue;
                                         if (payload.choices[0].finish_reason) {
