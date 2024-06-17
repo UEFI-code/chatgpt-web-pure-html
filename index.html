@@ -8266,6 +8266,7 @@
                                         try {
                                             payload = JSON.parse(chunk.slice(5));
                                         } catch (e) {
+                                            console.log(e);
                                             break;
                                         }
                                         if (!payload.choices.length) continue;
@@ -8282,6 +8283,7 @@
                                             break;
                                         } else {
                                             let content = payload.choices[0].delta.content;
+                                            console.log(content);
                                             if (content) {
                                                 if (!progressData && !content.trim()) continue;
                                                 if (existVoice && enableAutoVoice && currentVoiceIdx === autoVoiceDataIdx) {
