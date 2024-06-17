@@ -8187,7 +8187,9 @@
                         stop: null,
                         stream: true,
                         temperature: roleTemp,
-                        top_p: roleTop_p
+                        top_p: roleTop_p,
+                        frequency_penalty: 0,
+                        presence_penalty: 0
                     });
                 } else if (modelType === 2) {
                     dataSlice = dataSlice.map(item => {
