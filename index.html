@@ -8584,7 +8584,8 @@
                 inputAreaEle.value = "";
                 inputAreaEle.style.height = "47px";
                 if (keepListenMic && recing) resetRecRes();
-                generateText(message);
+                if(sendBtnEle.children[0].textContent !== translations[locale]["update"])
+                    generateText(message);
             }
         };
         sendBtnEle.onclick = genFunc;
