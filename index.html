@@ -8591,6 +8591,7 @@
                     let eleIdx = systemRole ? editingIdx - 1 : editingIdx;
                     requestEle = chatlog.children[eleIdx];
                     requestEle.children[1].textContent = message;
+                    data[editingIdx].content = message;
                     updateChats();
                     resumeSend();
                 }
