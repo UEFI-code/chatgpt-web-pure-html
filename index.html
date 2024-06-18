@@ -8586,6 +8586,11 @@
                 if (keepListenMic && recing) resetRecRes();
                 if(sendBtnEle.children[0].textContent !== translations[locale]["update"])
                     generateText(message);
+                else
+                {
+                    updateChats();
+                    resumeSend();
+                }
             }
         };
         sendBtnEle.onclick = genFunc;
@@ -8601,6 +8606,7 @@
                     updateChats();
                 }
             } else {
+                // cancel edit
                 resumeSend();
             }
         }
