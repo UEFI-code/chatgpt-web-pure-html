@@ -5901,9 +5901,8 @@
             mdOption.className = "mdOption";
             ele.appendChild(mdOption);
             let optionWidth = existVoice >= 2 ? 140 : 105;
-            mdOption.innerHTML += `<div class="optionItems" style="width:${optionWidth}px;left:-${optionWidth - 10}px">`
-                + (ele.className === "request" ? `<div data-id="editMd" class="optionItem" title="${translations[locale]["edit"]}">
-                <svg width="18" height="18"><use xlink:href="#chatEditIcon" /></svg>
+            mdOption.innerHTML += `<div class="optionItems" style="width:${optionWidth}px;left:-${optionWidth - 10}px"><div data-id="editMd" class="optionItem" title="${translations[locale]["edit"]}">`
+                + (ele.className === "request" ? `<svg width="18" height="18"><use xlink:href="#chatEditIcon" /></svg>
                 </div>` : `<div data-id="refreshMd" class="refreshReq optionItem" title="${translations[locale]["refresh"]}">
                 <svg width="18" height="18" ><use xlink:href="#refreshIcon" /></svg>
                 <svg width="18" height="18" ><use xlink:href="#halfRefIcon" /></svg>
@@ -8135,7 +8134,7 @@
             controllerId = setTimeout(() => {
                 notyf.error(translations[locale]["timeoutTip"]);
                 stopLoading();
-            }, 600000);
+            }, 200000);
             let isRefresh = refreshIdx !== void 0;
             if (isRefresh) {
                 currentResEle = chatlog.children[systemRole ? refreshIdx - 1 : refreshIdx];
@@ -8229,7 +8228,7 @@
                     method: "POST",
                     headers,
                     body,
-                    //signal: controller.signal
+                    signal: controller.signal
                 });
                 clearTimeout(controllerId);
                 controllerId = void 0;
