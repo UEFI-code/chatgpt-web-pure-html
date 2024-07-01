@@ -5,7 +5,7 @@ Pure Javascript ChatGPT demo based on Azure OpenAI API
 
 # WARNING: Don't read the code, otherwise you might get cancer!!!
 
-*** The code is estremely dirty, messy and stupid, just consider it as a joke. Even I hate it. ***
+** This code is estremely dirty, messy and stupid, just consider it as a joke. Even I hate it. **
 
 部署一个HTML文件即可使用。
 
