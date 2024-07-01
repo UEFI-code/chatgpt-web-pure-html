@@ -3,6 +3,10 @@ Pure Javascript ChatGPT demo based on Azure OpenAI API
 
 纯JS实现的ChatGPT项目，基于Azure OpenAI API
 
+# WARNING: Don't read the code, otherwise you might get cancer!!!
+
+*** The code is estremely dirty, messy and stupid, just consider it as a joke. Even I hate it. ***
+
 部署一个HTML文件即可使用。
 
 支持复制/更新/刷新会话，语音输入，朗读等功能，以及众多[自定义选项](#自定义选项)。
